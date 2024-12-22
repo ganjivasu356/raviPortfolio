@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/raviPortfolio/static/css/main.b23688df.css",
+    "main.js": "/raviPortfolio/static/js/main.c5a5639f.js",
+    "static/media/Ravi.png": "/raviPortfolio/static/media/Ravi.228ac279c0fd72baec8a.png",
+    "index.html": "/raviPortfolio/index.html",
+    "main.b23688df.css.map": "/raviPortfolio/static/css/main.b23688df.css.map",
+    "main.c5a5639f.js.map": "/raviPortfolio/static/js/main.c5a5639f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b23688df.css",
+    "static/js/main.c5a5639f.js"
+  ]
+}
