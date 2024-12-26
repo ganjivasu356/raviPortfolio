@@ -1,85 +1,50 @@
 import React from "react";
-import {
-  Box,
-  Stepper,
-  Step,
-  StepLabel,
-  StepContent,
-  Typography,
-} from "@mui/material";
-import { experienceData } from "./dummy";
+import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const ExperienceSection = ({ experienceRef }) => {
+const ExperienceSection = () => {
+  const navigate = useNavigate();
+
+  const handleKnowMore = () => {
+    navigate("/experience");
+  };
+
   return (
-    <section id="experience" ref={experienceRef}>
-      <Typography
-        variant="h5"
-        fontWeight="bold"
-        sx={{
-          mb: 3,
-          mt: { xs: 3, md: 5 },
-          ml: { xs: 2, md: 4 },
-          textAlign: { xs: "center", md: "left" },
-          fontSize: { xs: "1.5rem", sm: "2rem" },
-        }}
-      >
-        Experience
+    <Box
+      sx={{
+        width: "100%",
+        minHeight: "40vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        bgcolor: "#f9f9f9",
+        px: 2,
+      }}
+    >
+      <Typography variant="h3" gutterBottom>
+        Work Experience
       </Typography>
-      <Stepper
-        orientation="vertical"
-        sx={{
-          "& .MuiStepLabel-label": {
-            fontWeight: "bold",
-            paddingLeft: { xs: 1, md: 2 }, // Adjust padding for smaller screens
-          },
-          "& .MuiStepContent-root": {
-            borderLeft: "2px solid #ccc",
-            paddingLeft: { xs: 1, md: 2 }, // Adjust padding for smaller screens
-          },
-        }}
-      >
-        {experienceData.map((exp, index) => (
-          <Step key={index} active>
-            <StepLabel>
-              <Typography
-                variant="h6"
-                sx={{ fontSize: { xs: "1rem", sm: "1.25rem" } }} // Responsive font size
-              >
-                {`${exp.designation} | ${exp.company}`}
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  color: "gray",
-                  fontSize: { xs: "0.875rem", sm: "1rem" }, // Responsive font size
-                }}
-              >
-                {exp.timePeriod}
-              </Typography>
-            </StepLabel>
-            <StepContent>
-              <Box sx={{ marginLeft: { xs: 1, md: 2 } }}>
-                {exp.rolesAndResp.map((role, idx) => (
-                  <Typography
-                    variant="body1"
-                    key={idx}
-                    sx={{
-                      marginTop: "10px",
-                      display: "list-item",
-                      listStyleType: "disc",
-                      marginLeft: "20px",
-                      fontSize: { xs: "0.875rem", sm: "1rem" }, // Responsive font size
-                    }}
-                  >
-                    {role}
-                  </Typography>
-                ))}
-              </Box>
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
-    </section>
+      <Box sx={{ width: "70%" }}>
+        <Typography variant="body1" gutterBottom>
+          This section highlights my professional journey, showcasing the roles
+          I’ve undertaken, the skills I’ve honed, and the impact I’ve made in
+          various industries. From contributing to key projects and achieving
+          measurable results to collaborating with diverse teams, my experience
+          reflects my dedication to growth and excellence in every role.
+        </Typography>
+
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ mt: 4 }}
+          onClick={handleKnowMore}
+        >
+          Know More
+        </Button>
+      </Box>
+    </Box>
   );
 };
 

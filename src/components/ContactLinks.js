@@ -1,7 +1,7 @@
 import { Box, IconButton } from "@mui/material";
 import React from "react";
 
-import { GitHub, LinkedIn, Email, Phone } from "@mui/icons-material";
+import { GitHub, LinkedIn, Email } from "@mui/icons-material";
 
 const ContactLinks = () => {
   return (
@@ -34,9 +34,6 @@ const ContactLinks = () => {
       </IconButton>
       <IconButton component="a" href="mailto:ravi.laudya@gmail.com">
         <Email />
-      </IconButton>
-      <IconButton component="a" href="tel:(+1) 425-502-1642">
-        <Phone />
       </IconButton>
     </Box>
   );

@@ -1,124 +1,130 @@
 import React, { useState } from "react";
 import {
   AppBar,
-  Box,
   Toolbar,
   Typography,
+  Button,
+  Box,
   IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   useMediaQuery,
-  Menu,
-  MenuItem,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme } from "@mui/material/styles";
+import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { menuItems } from "../utility/constants";
 
-function Header() {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+const Header = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md")); // Check for mobile view
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  // State to handle menu open/close
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  // Handle menu toggle
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
+  const handleNavigate = (route) => {
+    navigate(route); // Navigate to the specified route
+    if (isMobile) {
+      setDrawerOpen(false); // Close the drawer on mobile after navigation
+    }
   };
 
   return (
     <AppBar
       position="static"
+      color="transparent"
       elevation={0}
-      sx={{
-        background: "linear-gradient(to bottom, #ffffff, #f8f9fc)",
-        color: "#333",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-        padding: "0 16px",
-      }}
+      sx={{ marginTop: "12px" }}
     >
-      <Toolbar>
-        {/* Logo or Title Section */}
-        <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: "bold",
-              color: "#555",
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-            }}
-          >
-            Ravi Laudya
-          </Typography>
-        </Box>
-
-        {/* Navigation Links for Large Screens */}
+      <Toolbar sx={{ justifyContent: "flex-end" }}>
+        {/* Desktop Navigation */}
         {!isMobile && (
-          <Box
-            sx={{
-              display: "flex",
-              gap: 3,
-              alignItems: "center",
-            }}
-          >
-            {["Home", "About", "Projects", "Contact"].map((navItem) => (
-              <Typography
-                key={navItem}
-                variant="body1"
+          <Box sx={{ display: "flex", gap: 3 }}>
+            {menuItems.map((item) => (
+              <Button
+                key={item.id}
+                onClick={() => handleNavigate(item.route)} // Call handleNavigate
                 sx={{
-                  fontWeight: "500",
-                  cursor: "pointer",
-                  "&:hover": { color: "#666" },
+                  color: "primary.main",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  letterSpacing: "1.5px", // Add letter spacing
                 }}
               >
-                {navItem}
-              </Typography>
+                {item.title}
+              </Button>
             ))}
           </Box>
         )}
 
-        {/* Mobile Menu Icon */}
+        {/* Mobile Hamburger Menu */}
+        {isMobile && (
+          <IconButton
+            edge="end"
+            color="inherit"
+            onClick={() => setDrawerOpen(true)}
+          >
+            <MenuIcon sx={{ color: "black" }} />
+          </IconButton>
+        )}
+      </Toolbar>
+
+      {/* Drawer for Mobile Menu */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      >
         <Box
           sx={{
+            width: 250,
+            // backgroundColor: "#333",
+            height: "100%",
+            // color: "white",
             display: "flex",
-            alignItems: "center",
-            gap: 1,
+            flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
-          {isMobile ? (
-            <IconButton onClick={handleMenuOpen}>
-              <MenuIcon sx={{ color: "#555" }} />
+          {/* Close Button */}
+          <Box display="flex" justifyContent="flex-end" p={2}>
+            <IconButton
+              onClick={() => setDrawerOpen(false)}
+              sx={{ color: "black" }}
+            >
+              <CloseIcon />
             </IconButton>
-          ) : null}
-        </Box>
+          </Box>
 
-        {/* Mobile Dropdown Menu */}
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-          keepMounted
-        >
-          {["Home", "About", "Projects", "Contact"].map((menuItem) => (
-            <MenuItem key={menuItem} onClick={handleMenuClose}>
-              {menuItem}
-            </MenuItem>
-          ))}
-        </Menu>
-      </Toolbar>
+          {/* Navigation Links */}
+          <List>
+            {menuItems.map((item) => (
+              <ListItem key={item.id} disablePadding>
+                <ListItemButton onClick={() => handleNavigate(item.route)}>
+                  <ListItemText
+                    primary={item.title}
+                    sx={{
+                      textAlign: "center",
+                      color: "white",
+                      letterSpacing: "2px", // Add letter spacing
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+
+          {/* Footer Text in Drawer */}
+          <Box p={2}>
+            <Typography variant="body2" textAlign="center">
+              © 2025 Ravi Laudya
+            </Typography>
+          </Box>
+        </Box>
+      </Drawer>
     </AppBar>
   );
-}
+};
 
 export default Header;
