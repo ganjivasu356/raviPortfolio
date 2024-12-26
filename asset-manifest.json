@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/raviPortfolio/static/css/main.c65a059b.css",
-    "main.js": "/raviPortfolio/static/js/main.f52a3704.js",
+    "main.js": "/raviPortfolio/static/js/main.a8281c68.js",
     "static/media/artone.jpg": "/raviPortfolio/static/media/artone.d20c519b989aa256ce7c.jpg",
     "static/media/arttwo.jpg": "/raviPortfolio/static/media/arttwo.6be28d3111adabe8a5f4.jpg",
     "static/media/awardone.jpg": "/raviPortfolio/static/media/awardone.3bd0c173e97a8229fe37.jpg",
@@ -9,10 +9,10 @@
     "static/media/Ravi.png": "/raviPortfolio/static/media/Ravi.228ac279c0fd72baec8a.png",
     "index.html": "/raviPortfolio/index.html",
     "main.c65a059b.css.map": "/raviPortfolio/static/css/main.c65a059b.css.map",
-    "main.f52a3704.js.map": "/raviPortfolio/static/js/main.f52a3704.js.map"
+    "main.a8281c68.js.map": "/raviPortfolio/static/js/main.a8281c68.js.map"
   },
   "entrypoints": [
     "static/css/main.c65a059b.css",
-    "static/js/main.f52a3704.js"
+    "static/js/main.a8281c68.js"
   ]
 }
