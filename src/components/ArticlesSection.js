@@ -80,7 +80,7 @@ const ArticlesSection = () => {
               <Button
                 variant="contained"
                 component={Link} // Use Link for navigation
-                to="/awards" // Specify the route
+                to="/articles" // Specify the route
                 sx={{
                   fontWeight: "bold",
                   backgroundColor: "primary.main",
