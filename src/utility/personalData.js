@@ -26,8 +26,8 @@ export const experienceData = [
     company: "GlobalLogic",
     designation: "Director of Engineering",
     rolesAndResp: [
-      "Moved to GlobalLogic through acquisition of Pentaur Technology",
       "Built 140+ member team from scratch for development of services in Marketo",
+      "Moved to GlobalLogic through acquisition of Pentaur Technology",
       "Lead for 30+ member team",
     ],
   },

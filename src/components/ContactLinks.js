@@ -1,7 +1,7 @@
 import { Box, IconButton } from "@mui/material";
 import React from "react";
-
-import { GitHub, LinkedIn, Email } from "@mui/icons-material";
+import { GitHub, LinkedIn } from "@mui/icons-material";
+import XIcon from "@mui/icons-material/X";
 
 const ContactLinks = () => {
   return (
@@ -22,7 +22,7 @@ const ContactLinks = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <GitHub />
+        <GitHub fontSize="large" />
       </IconButton>
       <IconButton
         component="a"
@@ -30,10 +30,15 @@ const ContactLinks = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <LinkedIn />
+        <LinkedIn fontSize="large" />
       </IconButton>
-      <IconButton component="a" href="mailto:ravi.laudya@gmail.com">
-        <Email />
+      <IconButton
+        component="a"
+        href="https://x.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <XIcon fontSize="medium" />
       </IconButton>
     </Box>
   );

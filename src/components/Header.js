@@ -14,27 +14,34 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { menuItems } from "../utility/constants";
+import { Brightness4, Brightness7 } from "@mui/icons-material";
 
-const Header = () => {
+const Header = ({ darkMode, setDarkMode }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("md")); // Check for mobile view
-  const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleNavigate = (route) => {
-    navigate(route); // Navigate to the specified route
+  const handleNavigate = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
     if (isMobile) {
-      setDrawerOpen(false); // Close the drawer on mobile after navigation
+      setDrawerOpen(false); // Close the drawer on mobile
     }
   };
 
   return (
     <AppBar
-      position="static"
+      position="fixed" // Changed to "fixed" for a sticky header
       color="transparent"
       elevation={0}
-      sx={{ marginTop: "12px" }}
+      sx={{
+        top: 0, // Ensures it sticks to the top
+        zIndex: (theme) => theme.zIndex.drawer + 1, // Ensure it stays above other components
+        backgroundColor: darkMode ? "#121212" : "#ffffff", // Dynamic background
+        transition: "background-color 0.3s ease-in-out",
+      }}
     >
       <Toolbar sx={{ justifyContent: "flex-end" }}>
         {/* Desktop Navigation */}
@@ -43,9 +50,9 @@ const Header = () => {
             {menuItems.map((item) => (
               <Button
                 key={item.id}
-                onClick={() => handleNavigate(item.route)} // Call handleNavigate
+                onClick={() => handleNavigate(item.id)} // Call handleNavigate
                 sx={{
-                  color: "primary.main",
+                  color: "dynamicTextColor",
                   fontSize: "16px",
                   fontWeight: "bold",
                   textTransform: "none",
@@ -55,6 +62,9 @@ const Header = () => {
                 {item.title}
               </Button>
             ))}
+            <IconButton color="inherit" onClick={() => setDarkMode(!darkMode)}>
+              {darkMode ? <Brightness7 /> : <Brightness4 />}
+            </IconButton>
           </Box>
         )}
 
@@ -65,7 +75,7 @@ const Header = () => {
             color="inherit"
             onClick={() => setDrawerOpen(true)}
           >
-            <MenuIcon sx={{ color: "black" }} />
+            <MenuIcon />
           </IconButton>
         )}
       </Toolbar>
@@ -79,9 +89,7 @@ const Header = () => {
         <Box
           sx={{
             width: 250,
-            // backgroundColor: "#333",
             height: "100%",
-            // color: "white",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
