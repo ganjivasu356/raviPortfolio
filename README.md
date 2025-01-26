@@ -68,3 +68,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+#### Deploy in github pages
+
+1. In your package.json, you'll need to add a homepage field and modify the scripts section to include the deploy script.
+
+   Add the homepage field:
+   At the top level of package.json, add the following line (replace username with your GitHub username and repo-name with the name of your repository):
+
+   "homepage": "https://username.github.io/repo-name",
+
+2. Now, run the following command to deploy your app to GitHub Pages:
+
+   npm run deploy
+
+3. After the deployment completes, you can access your React app at: https://username.github.io/repo-name.
