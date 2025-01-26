@@ -11,10 +11,10 @@ function App() {
         element: <AppLayout />,
         errorElement: <Error />,
       },
-    ]
-    // {
-    //   basename: "/raviPortfolio", // Match your GitHub Pages subpath
-    // }
+    ],
+    {
+      basename: "/raviPortfolio", // Match your github repo name here and home page in package.json
+    }
   );
 
   return <RouterProvider router={router} />;
