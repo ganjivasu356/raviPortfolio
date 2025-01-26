@@ -40,7 +40,11 @@ function Timeline({ isDarkMode }) {
             <VerticalTimelineElement
               key={index}
               className="vertical-timeline-element--work"
-              date={data.timePeriod}
+              date={
+                <span style={{ color: styles.date.color, fontWeight: "bold" }}>
+                  {data.timePeriod}
+                </span>
+              }
               iconStyle={styles.iconStyle}
               icon={<FontAwesomeIcon icon={faBriefcase} />}
               contentStyle={{
